@@ -34,17 +34,20 @@
             Card3 = new PictureBox();
             Card4 = new PictureBox();
             Card5 = new PictureBox();
+            CardFrame = new Panel();
+            Result = new Label();
             ((System.ComponentModel.ISupportInitialize)Card1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Card2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Card3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Card4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)Card5).BeginInit();
+            CardFrame.SuspendLayout();
             SuspendLayout();
             // 
             // Card1
             // 
             Card1.Image = Properties.Resources.red_joker;
-            Card1.Location = new Point(12, 12);
+            Card1.Location = new Point(3, 3);
             Card1.Name = "Card1";
             Card1.Size = new Size(256, 372);
             Card1.SizeMode = PictureBoxSizeMode.Zoom;
@@ -64,7 +67,7 @@
             // Card2
             // 
             Card2.Image = Properties.Resources.red_joker;
-            Card2.Location = new Point(274, 12);
+            Card2.Location = new Point(265, 3);
             Card2.Name = "Card2";
             Card2.Size = new Size(256, 372);
             Card2.SizeMode = PictureBoxSizeMode.Zoom;
@@ -74,7 +77,7 @@
             // Card3
             // 
             Card3.Image = Properties.Resources.red_joker;
-            Card3.Location = new Point(536, 12);
+            Card3.Location = new Point(527, 3);
             Card3.Name = "Card3";
             Card3.Size = new Size(256, 372);
             Card3.SizeMode = PictureBoxSizeMode.Zoom;
@@ -84,7 +87,7 @@
             // Card4
             // 
             Card4.Image = Properties.Resources.red_joker;
-            Card4.Location = new Point(798, 12);
+            Card4.Location = new Point(789, 3);
             Card4.Name = "Card4";
             Card4.Size = new Size(256, 372);
             Card4.SizeMode = PictureBoxSizeMode.Zoom;
@@ -94,24 +97,47 @@
             // Card5
             // 
             Card5.Image = Properties.Resources.red_joker;
-            Card5.Location = new Point(1060, 12);
+            Card5.Location = new Point(1051, 3);
             Card5.Name = "Card5";
             Card5.Size = new Size(256, 372);
             Card5.SizeMode = PictureBoxSizeMode.Zoom;
             Card5.TabIndex = 0;
             Card5.TabStop = false;
             // 
+            // CardFrame
+            // 
+            CardFrame.AutoSize = true;
+            CardFrame.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            CardFrame.Controls.Add(Card2);
+            CardFrame.Controls.Add(Card3);
+            CardFrame.Controls.Add(Card4);
+            CardFrame.Controls.Add(Card5);
+            CardFrame.Controls.Add(Card1);
+            CardFrame.Location = new Point(12, 12);
+            CardFrame.Name = "CardFrame";
+            CardFrame.Size = new Size(1310, 378);
+            CardFrame.TabIndex = 2;
+            // 
+            // Result
+            // 
+            Result.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            Result.AutoSize = true;
+            Result.Font = new Font("맑은 고딕", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 129);
+            Result.Location = new Point(461, 415);
+            Result.Name = "Result";
+            Result.Size = new Size(429, 47);
+            Result.TabIndex = 3;
+            Result.Text = "Get your Hand Rankings";
+            Result.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1327, 546);
+            Controls.Add(Result);
+            Controls.Add(CardFrame);
             Controls.Add(btnDeal);
-            Controls.Add(Card5);
-            Controls.Add(Card4);
-            Controls.Add(Card3);
-            Controls.Add(Card2);
-            Controls.Add(Card1);
             Name = "Form1";
             Text = "카드 딜러";
             ((System.ComponentModel.ISupportInitialize)Card1).EndInit();
@@ -119,7 +145,9 @@
             ((System.ComponentModel.ISupportInitialize)Card3).EndInit();
             ((System.ComponentModel.ISupportInitialize)Card4).EndInit();
             ((System.ComponentModel.ISupportInitialize)Card5).EndInit();
+            CardFrame.ResumeLayout(false);
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -130,5 +158,7 @@
         private PictureBox Card3;
         private PictureBox Card4;
         private PictureBox Card5;
+        private Panel CardFrame;
+        private Label Result;
     }
 }

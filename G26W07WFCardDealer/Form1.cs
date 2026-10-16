@@ -1,53 +1,66 @@
+using System.Xml.Linq;
+
 namespace G26W07WFCardDealer
 {
+
     public partial class Form1 : Form
     {
-        public static List<String> cards = [];
-        
 
-        public String setCard()
-        {
-            string[] suits = ["spades", "hearts", "diamonds", "clubs"];
-            string[] values = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
+        private static List<Card> cards = [new Card(), new Card(), new Card(), new Card(), new Card()];
 
-            while (true)
-            {
-                Random random = new Random();
-                int card = random.Next(suits.Length * values.Length);
+        private static string[] suits = ["spades", "hearts", "diamonds", "clubs"];
+        private static string[] values = ["ace", "2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king"];
 
-                string suit = suits[card / values.Length];
-                string value = values[card % values.Length];
-                string name = $"{value}_of_{suit}";
+        private static string[] rankText = [
+            "노 페어 😭",
+            "원 페어",
+            "투 페어",
+            "트리플",
+            "스트레이트",
+            "백스트레이트",
+            "마운틴",
+            "플러쉬",
+            "풀하우스",
+            "포카드",
+            "스트레이트 플러쉬",
+            "백 스트레이트 플러쉬",
+            "👑로열 스트레이트 플러쉬👑🤣🤣🤣"
+            ];
 
-                if (value == "jack" || value == "queen" || value == "king")
-                {
-                    name += "2";
-                }
-
-                if (!cards.Contains(name))
-                {
-                    cards.Add(name);
-                    return name;
-                }
-            }
-        }
 
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void OnDeal(object sender, EventArgs e)
         {
+            Control.ControlCollection cardcontrols = CardFrame.Controls;
+
             for (int i = 0; i < 5; i++)
             {
-                cards.Clear();
+                Card.rolledCard.Clear();
+
+                int[] val = cards[i].roll();
+
+                int suit = val[0];
+                int value = val[1];
+
+                PictureBox? card = cardcontrols[i] as PictureBox;
+
+                string name = $"{values[value]}_of_{suits[suit]}";
+
+                if (value == 10 || value == 11 || value == 12)
+                {
+                    name += "2";
+                }
+
+                card.Image = Properties.Resources.ResourceManager.GetObject(name) as Image;
+
+                Result.Text = rankText[Card.getRank(cards)];
             }
-            Card1.Image = Properties.Resources.ResourceManager.GetObject(setCard()) as Image;
-            Card2.Image = Properties.Resources.ResourceManager.GetObject(setCard()) as Image;
-            Card3.Image = Properties.Resources.ResourceManager.GetObject(setCard()) as Image;
-            Card4.Image = Properties.Resources.ResourceManager.GetObject(setCard()) as Image;
-            Card5.Image = Properties.Resources.ResourceManager.GetObject(setCard()) as Image;
         }
+
     }
 }
