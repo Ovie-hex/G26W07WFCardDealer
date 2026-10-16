@@ -38,9 +38,11 @@ namespace G26W07WFCardDealer
         {
             Control.ControlCollection cardcontrols = CardFrame.Controls;
 
+            Card.rolledCard.Clear();
+
             for (int i = 0; i < 5; i++)
             {
-                Card.rolledCard.Clear();
+                
 
                 int[] val = cards[i].roll();
 

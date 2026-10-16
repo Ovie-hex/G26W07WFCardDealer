@@ -60,20 +60,31 @@ namespace G26W07WFCardDealer
         public int[] roll()
         {
             Random r = new();
-            suit = r.Next(4);
-            value = r.Next(13);
 
-            if (rolledCard.Count > 0)
+            while (true)
             {
-                foreach (Card c in rolledCard)
-                {
-                    if (suit == c.suit && value == c.value) { return this.roll(); }
+                this.suit = r.Next(4);
+                this.value = r.Next(13);
+                bool IsHaveSame = false;
+
+                if (rolledCard.Count > 0)
+                { 
+                    foreach (Card c in rolledCard)
+                    {
+                        if (this.suit == c.suit && this.value == c.value)
+                        {
+                            IsHaveSame = true;
+                        }
+                    }
                 }
+
+                if (IsHaveSame) continue;
+                else break;
             }
 
             rolledCard.Add(this);
 
-            return new int[] { suit, value };
+            return new int[] { this.suit, this.value };
         }
         
     }
